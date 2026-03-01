@@ -20,338 +20,15 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Smart Upsell Modal Styles */
-        .upsell-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(2, 43, 34, 0.85);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 4000;
-            padding: 20px;
-            backdrop-filter: blur(8px);
-        }
-
-        .upsell-content {
-            background: var(--bg-cream);
-            padding: 2.5rem;
-            border-radius: var(--radius-lg);
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--accent-gold-pale);
-        }
-
-        .upsell-tag {
-            background: var(--accent-gold);
-            color: var(--white);
-            padding: 5px 15px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            border-radius: 50px;
-        }
-
-        .upsell-img {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            margin: 0 auto 1.5rem;
-            border-radius: var(--radius-md);
-        }
-
-        .upsell-title {
-            font-size: 1.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .upsell-price {
-            font-size: 1.4rem;
-            color: var(--accent-gold);
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
-
-        .upsell-btns {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .no-thanks {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-top: 10px;
-        }
-    </style>
-    <style>
-        /* AI Chat Assistant Styles */
-        .ai-chat-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary-dark);
-            color: var(--accent-gold);
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(2, 43, 34, 0.4);
-            z-index: 5000;
-            transition: var(--transition-base);
-            border: 2px solid var(--accent-gold);
-            cursor: pointer;
-        }
-
-        .ai-chat-toggle:hover {
-            transform: scale(1.1);
-            background: var(--primary-light);
-        }
-
-        .ai-chat-window {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            width: 380px;
-            max-width: calc(100vw - 60px);
-            height: 550px;
-            max-height: calc(100vh - 150px);
-            background: var(--bg-cream);
-            border-radius: var(--radius-lg);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            z-index: 5001;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid var(--accent-gold-pale);
-            transition: var(--transition-base);
-        }
-
-        .ai-chat-header {
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--accent-gold);
-        }
-
-        .ai-chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: #fdfdfd;
-        }
-
-        .ai-bubble,
-        .user-bubble {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 15px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            position: relative;
-        }
-
-        .ai-bubble {
-            align-self: flex-start;
-            background: #f0f0f0;
-            color: var(--text-main);
-            border-bottom-left-radius: 2px;
-        }
-
-        .user-bubble {
-            align-self: flex-end;
-            background: var(--primary-dark);
-            color: var(--white);
-            border-bottom-right-radius: 2px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .ai-typing {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding: 0 20px 10px;
-            display: none;
-            font-style: italic;
-        }
-
-        .ai-chat-input-area {
-            padding: 15px 20px;
-            background: var(--white);
-            border-top: 1px solid #eee;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .ai-chat-input-area input {
-            flex: 1;
-            border: 1px solid #ddd;
-            padding: 12px 15px;
-            border-radius: 25px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .ai-chat-input-area input:focus {
-            border-color: var(--accent-gold);
-        }
-
-        .ai-chat-input-area button {
-            background: var(--primary-dark);
-            color: var(--accent-gold);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .ai-chat-input-area button:hover {
-            background: var(--primary-light);
-        }
-
-        /* Proactive Greeting Bubbles */
-        .ai-greeting-popup {
-            position: fixed;
-            bottom: 105px;
-            right: 30px;
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 15px 20px;
-            border-radius: 20px;
-            border-bottom-right-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 4999;
-            font-size: 0.9rem;
-            max-width: 250px;
-            display: none;
-            animation: fadeInUp 0.5s ease forwards;
-            border: 1px solid var(--accent-gold);
-        }
-
-        .ai-greeting-popup::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 15px;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid var(--primary-dark);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .pulse-soft {
-            animation: softPulse 2s infinite;
-        }
-
-        @keyframes softPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(197, 160, 89, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
-            }
-        }
-
-        .typing-dots {
-            display: flex;
-            gap: 4px;
-            padding: 5px 0;
-        }
-
-        .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            animation: dotWave 1.4s infinite;
-        }
-
-        .dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes dotWave {
-
-            0%,
-            60%,
-            100% {
-                transform: translateY(0);
-            }
-
-            30% {
-                transform: translateY(-4px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .ai-chat-window {
-                bottom: 0;
-                right: 0;
-                width: 100%;
-                height: 100vh;
-                max-height: 100vh;
-                border-radius: 0;
-            }
-
-            .ai-chat-toggle {
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <header>
+    <header id="main-header">
         <div class="container">
             <nav>
                 <a href="#" class="logo">Hafsoo <span>Fragrance</span></a>
-                <button class="cart-btn" data-action="toggle-cart" aria-label="View Cart">
+                <button class="cart-btn" id="cart-btn" aria-label="View Cart">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -364,59 +41,87 @@
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="hero">
             <div class="hero-subtitle">The Royal Essence</div>
             <h1>Legacy of Fragrance</h1>
             <p>Experience the finest blend of traditional Attars and modern Perfumes, crafted for those who value
                 elegance.</p>
-            <a href="#products" class="btn btn-primary">Explore Collection</a>
+            <div class="hero-btns" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <a href="#products" class="btn btn-primary">Explore Collection</a>
+                <button class="btn btn-outline" id="open-quiz-btn"
+                    style="color: var(--white); border-color: var(--white);">Find Your Signature Scent</button>
+            </div>
         </section>
 
         <!-- Offer Banner -->
-        <div class="offer-banner">
-            <h3 class="serif-font">Limited Time Luxury Sale</h3>
+        <section class="offer-banner reveal reveal-up" aria-labelledby="sale-heading">
+            <h3 id="sale-heading">Limited Time Luxury Sale</h3>
             <p>Exclusive offer ends in:</p>
             <time class="timer" id="countdown">02:45:00</time>
-        </div>
+        </section>
+
+        <!-- Our Story (About) Section -->
+        <section id="about" class="about-section container">
+            <div class="about-grid">
+                <div class="about-content reveal reveal-left">
+                    <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                        <p>Our Heritage</p>
+                        <h2>The Art of Essence</h2>
+                    </div>
+                    <p>
+                        Founded on the principles of purity and royalty, Hafsoo Fragrance captures the soul of
+                        traditional Oudh and modern sophistication. Each bottle is a symphony of rare notes,
+                        hand-selected to create an unforgettable presence.
+                    </p>
+                    <a href="#products" class="btn btn-primary">Discover More</a>
+                </div>
+                <div class="about-image-wrapper reveal reveal-right">
+                    <img src="images/hero.png" alt="Our Story" class="about-image">
+                </div>
+            </div>
+        </section>
 
         <!-- Products Section -->
-        <section id="products">
+        <section id="products" class="products-section">
             <div class="section-title">
                 <p>Our Masterpieces</p>
                 <h2>Luxury Collection</h2>
             </div>
             <div class="product-grid" id="product-grid">
-                <!-- Products will be injected here by script.js -->
+                <!-- Products dynamically injected by script.js -->
             </div>
         </section>
 
         <!-- Testimonials Section -->
         <section class="testimonials-section">
-            <div class="section-title">
+            <div class="reveal reveal-up section-title">
                 <p>Client Experiences</p>
                 <h2>Verified Reviews</h2>
             </div>
             <div class="container">
                 <div class="testimonials-grid">
-                    <article class="testimo-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimo-text">"MashaAllah, Hafsoo Fragrance ki khushbu mein wo pakeezgi aur miyar hai
-                            jo aj kal nayab hai!"</p>
-                        <div class="testimo-author">Sikandar Hayat</div>
+                    <article class="testimo-card reveal reveal-up">
+                        <div class="stars" aria-label="5 stars">★★★★★</div>
+                        <blockquote class="testimo-text">"MashaAllah, Hafsoo Fragrance ki khushbu mein wo pakeezgi aur
+                            miyar hai
+                            jo aj kal nayab hai!"</blockquote>
+                        <cite class="testimo-author">Sikandar Hayat</cite>
                     </article>
-                    <article class="testimo-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimo-text">"Absolutely impressed by the longevity. The Emerald Night is a true
-                            masterpiece of scent."</p>
-                        <div class="testimo-author">Jameel Khan</div>
+                    <article class="testimo-card reveal reveal-up">
+                        <div class="stars" aria-label="5 stars">★★★★★</div>
+                        <blockquote class="testimo-text">"Absolutely impressed by the longevity. The Emerald Night is a
+                            true
+                            masterpiece of scent."</blockquote>
+                        <cite class="testimo-author">Jameel Khan</cite>
                     </article>
-                    <article class="testimo-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimo-text">"The packaging, the scent, the royal feel! Sultani Attar is now my
-                            signature fragrance."</p>
-                        <div class="testimo-author">Ali Usman</div>
+                    <article class="testimo-card reveal reveal-up">
+                        <div class="stars" aria-label="5 stars">★★★★★</div>
+                        <blockquote class="testimo-text">"The packaging, the scent, the royal feel! Sultani Attar is now
+                            my
+                            signature fragrance."</blockquote>
+                        <cite class="testimo-author">Ali Usman</cite>
                     </article>
                 </div>
             </div>
@@ -424,11 +129,11 @@
     </main>
 
     <!-- Cart Sidebar -->
-    <div class="cart-overlay" id="cart-overlay" data-action="toggle-cart"></div>
-    <aside class="cart-drawer" id="cart-drawer" role="complementary">
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" role="complementary" aria-labelledby="cart-title">
         <div class="cart-header">
-            <h3 class="serif-font">Your Collection</h3>
-            <span class="close-cart" data-action="toggle-cart">&times;</span>
+            <h3 id="cart-title">Your Collection</h3>
+            <button class="close-btn" id="close-cart" aria-label="Close Cart">&times;</button>
         </div>
         <div class="cart-items" id="cart-items">
             <!-- Cart items injected here -->
@@ -438,59 +143,64 @@
                 <span>Total:</span>
                 <span id="cart-total-price">Rs. 0</span>
             </div>
-            <button class="btn-checkout" onclick="openCheckout()">Checkout via WhatsApp</button>
+            <button class="btn-checkout" id="checkout-trigger">Checkout via WhatsApp</button>
         </div>
     </aside>
 
     <!-- Smart Upsell Modal -->
-    <div class="upsell-modal" id="upsell-modal">
-        <div class="upsell-content">
+    <div class="modal-overlay" id="upsell-modal">
+        <div class="modal-content upsell-content">
             <div class="upsell-tag">Special Majid Edition Offer</div>
             <img src="" id="upsell-product-img" class="upsell-img" alt="Suggested Product">
             <h3 class="upsell-title" id="upsell-product-name">Majid Special Musk</h3>
             <div class="upsell-price" id="upsell-product-price">Rs. 1200</div>
             <div class="upsell-btns">
-                <button class="btn btn-primary" onclick="addUpsellToCart()">Add to Order</button>
-                <button class="no-thanks" onclick="closeUpsell()">No Thanks, continue checkout</button>
+                <button class="btn btn-primary" id="add-upsell-btn">Add to Order</button>
+                <button class="no-thanks" id="close-upsell-btn">No Thanks, continue checkout</button>
             </div>
         </div>
     </div>
 
     <!-- Checkout Modal -->
-    <div class="modal" id="checkout-modal">
+    <div class="modal-overlay" id="checkout-modal">
         <div class="modal-content">
-            <button class="close-cart" style="position:absolute; right:25px; top:25px; background:none; border:none;"
-                onclick="closeCheckout()">&times;</button>
+            <button class="close-btn" id="close-checkout" aria-label="Close Checkout">&times;</button>
             <h2>Complete Your Order</h2>
             <form id="checkout-form">
                 <div class="form-group">
                     <label for="cust-name">Full Name</label>
-                    <input type="text" id="cust-name" placeholder="Enter your name" required>
+                    <input type="text" id="cust-name" placeholder="Enter your name" required autocomplete="name">
                 </div>
                 <div class="form-group">
                     <label for="cust-phone">Phone Number</label>
-                    <input type="tel" id="cust-phone" placeholder="e.g. 0300 1234567" required>
+                    <input type="tel" id="cust-phone" placeholder="e.g. 0300 1234567" required autocomplete="tel">
                 </div>
                 <div class="form-group">
                     <label for="cust-address">Delivery Address</label>
-                    <textarea id="cust-address" placeholder="Enter your full shipping address" required
-                        rows="3"></textarea>
+                    <textarea id="cust-address" placeholder="Enter your full shipping address" required rows="3"
+                        autocomplete="street-address"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Confirm Order</button>
+                <button type="submit" class="btn btn-primary w-full">Confirm Order</button>
             </form>
         </div>
     </div>
 
+    <!-- Audio for Chat Notification -->
+    <audio id="chatNotificationSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- AI Chat Assistant UI -->
-    <div class="ai-greeting-popup" id="aiGreetingPopup">
+    <div class="ai-greeting-popup" id="aiGreetingPopup" role="status" aria-live="polite">
         <div class="typing-dots" id="greetingTyping">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-        <div id="greetingText" style="display:none;">Hi 👋 Welcome to Haafsoo Fragrance! How can I help you today?</div>
+        <div id="greetingText" class="hidden">Hi 👋 Welcome to Hafsoo Fragrance! How can I help you today?</div>
     </div>
-    <button class="ai-chat-toggle" id="aiChatToggle" aria-label="Open AI Assistant" onclick="toggleAIChat()">
+
+    <button class="ai-chat-toggle" id="aiChatToggle" aria-label="Open AI Assistant">
         <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
             <path
                 d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338c1.47.851 3.179 1.338 5 1.338 5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.477 0-2.863-.404-4.048-1.104l-.29-.172-2.986.797.797-2.986-.172-.29A7.953 7.953 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
@@ -498,35 +208,33 @@
     </button>
 
     <div class="ai-chat-window" id="aiChatWindow">
-        <div class="ai-chat-header">
-            <div>
-                <div style="font-weight: bold; font-size: 1rem;">Hafsoo Assistant</div>
-                <div style="font-size: 0.75rem; opacity: 0.8;">Expert Fragrance Guide</div>
+        <header class="ai-chat-header">
+            <div class="brand-info">
+                <span class="brand-name">Hafsoo Assistant</span>
+                <span class="brand-status">Expert Fragrance Guide</span>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="clearChat()" title="Clear Chat"
-                    style="color: white; font-size: 1.2rem; background:none; border:none; cursor:pointer;">&#128465;</button>
-                <button onclick="toggleAIChat()" title="Minimize"
-                    style="color: white; font-size: 1.2rem; background:none; border:none; cursor:pointer;">&minus;</button>
+            <div class="chat-actions">
+                <button id="clear-chat" title="Clear Chat" aria-label="Clear Chat History">&#128465;</button>
+                <button id="minimize-chat" title="Minimize" aria-label="Minimize Chat">&minus;</button>
             </div>
-        </div>
-        <div class="ai-chat-messages" id="aiChatMessages">
+        </header>
+        <div class="ai-chat-messages" id="aiChatMessages" role="log">
             <div class="ai-bubble">Assalam-o-Alaikum! Welcome to Hafsoo Fragrance. I am your AI guide. How can I help
                 you find your signature scent today?</div>
         </div>
         <div class="ai-typing" id="aiTyping">Hafsoo is typing...</div>
-        <div class="ai-chat-input-area">
+        <form class="ai-chat-input-area" id="ai-chat-form">
             <input type="text" id="aiChatInput" placeholder="Ask about our perfumes..." autocomplete="off">
-            <button id="aiSendBtn">
+            <button type="submit" id="aiSendBtn" aria-label="Send Message">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
             </button>
-        </div>
+        </form>
     </div>
 
     <!-- WhatsApp Floating Action -->
-    <a href="https://api.whatsapp.com/send?phone=923159831334&text=Assalam-o-Alaikum" class="float-wa" target="_blank"
+    <a href="https://wa.me/923159831334?text=Assalam-o-Alaikum" class="float-wa" target="_blank"
         aria-label="Contact us on WhatsApp">
         <svg viewBox="0 0 24 24">
             <path
@@ -535,61 +243,107 @@
     </a>
 
     <footer>
-        <div class="container">
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px;">
-                <div>
-                    <div class="footer-logo" style="text-align: left; margin-bottom: 15px;">Hafsoo
-                        <span>Fragrance</span>
-                    </div>
-                    <p style="font-size: 0.9rem; opacity: 0.8;">The art of perfume making is a journey of the soul,
-                        capturing moments in timeless scents. Crafted with passion, worn with pride.</p>
-                </div>
-                <div>
-                    <h4
-                        style="color: var(--accent-gold); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">
-                        Shop</h4>
-                    <ul style="list-style: none; font-size: 0.9rem; line-height: 2;">
-                        <li>Oudh Collection</li>
-                        <li>Traditional Attars</li>
-                        <li>Luxury EDP</li>
-                        <li>Signature Blends</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4
-                        style="color: var(--accent-gold); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">
-                        Support</h4>
-                    <ul style="list-style: none; font-size: 0.9rem; line-height: 2;">
-                        <li>Customer Care</li>
-                        <li>Shipping Policy</li>
-                        <li>Refund Policy</li>
-                        <li>Privacy Policy</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4
-                        style="color: var(--accent-gold); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">
-                        Connect</h4>
-                    <div style="display: flex; gap: 15px;">
-                        <span
-                            style="border: 1px solid var(--accent-gold); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">FB</span>
-                        <span
-                            style="border: 1px solid var(--accent-gold); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">IG</span>
-                        <span
-                            style="border: 1px solid var(--accent-gold); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">WA</span>
-                    </div>
-                    <p style="margin-top: 15px; font-size: 0.9rem;">Client Care: 03159831334</p>
-                </div>
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo">Hafsoo <span>Fragrance</span></div>
+                <p>The art of perfume making is a journey of the soul,
+                    capturing moments in timeless scents. Crafted with passion, worn with pride.</p>
             </div>
-            <div class="copyright" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <div class="footer-links">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Oudh Collection</a></li>
+                    <li><a href="#">Traditional Attars</a></li>
+                    <li><a href="#">Luxury EDP</a></li>
+                    <li><a href="#">Signature Blends</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Customer Care</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links footer-contact">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <span class="badge-outline">FB</span>
+                    <span class="badge-outline">IG</span>
+                    <span class="badge-outline">WA</span>
+                </div>
+                <p>Client Care: 03159831334</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
                 &copy; 2026 Hafsoo Fragrance. | All Rights Reserved.
             </div>
         </div>
     </footer>
 
+    <!-- Fragrance Finder Quiz Modal -->
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal-content quiz-modal-content">
+            <button class="close-btn" id="close-quiz" aria-label="Close Quiz">&times;</button>
+
+            <div id="quiz-step-container">
+                <!-- Step 1: Occasion -->
+                <div class="quiz-step active" data-step="1">
+                    <div class="quiz-progress">Step 1 of 3</div>
+                    <h2 class="quiz-question">What occasion are you buying perfume for?</h2>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" data-answer="Daily">Daily Wear</button>
+                        <button class="quiz-opt" data-answer="Office">Office/Professional</button>
+                        <button class="quiz-opt" data-answer="Date">Date Night</button>
+                        <button class="quiz-opt" data-answer="Wedding">Wedding/Special Event</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Type -->
+                <div class="quiz-step" data-step="2">
+                    <div class="quiz-progress">Step 2 of 3</div>
+                    <h2 class="quiz-question">What fragrance type do you prefer?</h2>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" data-answer="Sweet">Sweet & Floral</button>
+                        <button class="quiz-opt" data-answer="Woody">Woody & Earthy</button>
+                        <button class="quiz-opt" data-answer="Fresh">Fresh & Citrus</button>
+                        <button class="quiz-opt" data-answer="Strong">Strong Oud / Oriental</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Intensity -->
+                <div class="quiz-step" data-step="3">
+                    <div class="quiz-progress">Step 3 of 3</div>
+                    <h2 class="quiz-question">What intensity do you prefer?</h2>
+                    <div class="quiz-options">
+                        <button class="quiz-opt" data-answer="Light">Light & Subtle</button>
+                        <button class="quiz-opt" data-answer="Medium">Medium Projection</button>
+                        <button class="quiz-opt" data-answer="Strong">Long-lasting & Strong</button>
+                    </div>
+                </div>
+
+                <!-- Result Step -->
+                <div class="quiz-step" id="quiz-result-step">
+                    <h2 class="quiz-question" style="margin-bottom: 10px;">Your Signature Scent Found</h2>
+                    <p style="color: var(--accent-gold); font-weight: 500; margin-bottom: 25px;">Based on your choices,
+                        we recommend:</p>
+
+                    <div id="quiz-result-content">
+                        <!-- Recommended product details will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Notification Container -->
+    <div id="social-proof-container"></div>
+
     <!-- Final Scripts -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
