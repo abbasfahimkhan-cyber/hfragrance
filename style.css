@@ -17,7 +17,7 @@
     --whatsapp-green: #25D366;
 
     /* Spacing & Borders */
-    --section-padding: clamp(3rem, 10vw, 6rem);
+    --section-padding:70px 0;
     --container-width: 1400px;
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -1539,6 +1539,7 @@ footer {
     }
 
 }
+
 
 
 
