@@ -16,7 +16,7 @@ const State = {
             badge: "Limited",
             notes: "Top: Saffron | Heart: Rose",
             description: "A rich, woody masterpiece blending ancient agarwood with delicate floral notes.",
-            image: "images/product1.png"
+            image: "product1.png"
         },
         {
             id: 2,
@@ -26,7 +26,7 @@ const State = {
             badge: "Bestseller",
             notes: "Top: Bergamot | Heart: Jasmine",
             description: "An earthy, musky concentration that captures the essence of royal courts.",
-            image: "images/product2.png"
+            image: "product2.png"
         },
         {
             id: 3,
@@ -36,7 +36,7 @@ const State = {
             badge: "New",
             notes: "Top: Citrus | Heart: Orchid",
             description: "A fresh, nocturnal scent with crisp citrus and deep orchid undercurrents.",
-            image: "images/product3.png"
+            image: "product3.png"
         },
         {
             id: 4,
@@ -46,7 +46,7 @@ const State = {
             badge: "",
             notes: "Top: Lily | Heart: White Musk",
             description: "Pure, clean, and velvety musk with a lingering trail of white lilies.",
-            image: "images/product4.png"
+            image: "product4.png"
         },
         {
             id: 5,
@@ -56,7 +56,7 @@ const State = {
             badge: "Trending",
             notes: "Top: Amber | Heart: Vanilla",
             description: "A warm, soul-soothing blend of golden amber and sweet Madagascan vanilla.",
-            image: "images/product1.png"
+            image: "product1.png"
         },
         {
             id: 6,
@@ -66,7 +66,7 @@ const State = {
             badge: "",
             notes: "Top: Taif Rose | Heart: Honey",
             description: "Capturing the morning dew on fresh roses, mixed with a hint of wild honey.",
-            image: "images/product3.png"
+            image: "product3.png"
         }
     ],
     majidEdition: [
@@ -832,3 +832,4 @@ const UrgencySystem = {
         this.intervals = [];
     }
 };
+
