@@ -70,13 +70,13 @@ const State = {
         }
     ],
     majidEdition: [
-        { id: 101, title: "Majid Special Musk", price: 1200, category: "Majid Edition", image: "images/product2.png", notes: "Limited Collection" },
-        { id: 102, title: "Royal Oud Mukhallat", price: 1800, category: "Majid Edition", image: "images/product4.png", notes: "Majid Signature" },
-        { id: 103, title: "Gold Amber Gold", price: 1500, category: "Majid Edition", image: "images/product1.png", notes: "Majid Edition" }
+        { id: 101, title: "Majid Special Musk", price: 1200, category: "Majid Edition", image: "product2.png", notes: "Limited Collection" },
+        { id: 102, title: "Royal Oud Mukhallat", price: 1800, category: "Majid Edition", image: "product4.png", notes: "Majid Signature" },
+        { id: 103, title: "Gold Amber Gold", price: 1500, category: "Majid Edition", image: "product1.png", notes: "Majid Edition" }
     ],
     socialProof: {
-        names: ["Ali", "Ahmed", "Sarah", "Fatima", "Zohaib", "Maryam", "Bilal", "Zainab", "Usman", "Ayesha", "Hamza", "Hania"],
-        cities: ["Karachi", "Lahore", "Islamabad", "Faisalabad", "Rawalpindi", "Multan", "Peshawar", "Quetta", "Sialkot", "Hyderabad"],
+        names: ["Ali", "Ahmed", "Raheela Faheem", "Fatima", "Zohaib", "Maryam", "Bilal", "Zainab", "Usman", "Ayesha", "Hamza", "Hania"],
+        cities: ["Karachi", "Lahore", "Peshawar", "Faisalabad", "Rawalpindi", "Multan", "Islamabad", "Quetta", "Sialkot", "Hyderabad"],
         times: ["just now", "2 minutes ago", "5 minutes ago", "8 minutes ago", "12 minutes ago", "15 minutes ago"]
     },
     currentUpsellProduct: null
@@ -832,4 +832,5 @@ const UrgencySystem = {
         this.intervals = [];
     }
 };
+
 
