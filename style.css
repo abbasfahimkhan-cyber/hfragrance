@@ -387,7 +387,7 @@ section {
     display: flex;
     flex-direction: column;
     border: 1px solid transparent;
-    opacity: 5000;
+    opacity: 0;
     transform: translateY(30px);
 }
 
@@ -1539,5 +1539,6 @@ footer {
     }
 
 }
+
 
 
